@@ -1,27 +1,19 @@
 import React, { Component } from 'react';
 import { GiftedChat } from 'react-native-gifted-chat';
 
-const {
-  userID,
-  clickedUserID,
-  getPreviousMessages,
-  userName,
-  sendMessage,
-} = require('../Functionality/chatFunctions');
+const { userID, clickedUserID, getPreviousMessages } = require('../Functionality/chatFunctions');
 
 class Chat extends Component {
-  // Chat will need userID, userName and clickedUserID as props
+  // Chat will need userID and clickedUserID as props
   state = {
     messages: [],
-    doc: '',
   };
 
   componentWillMount() {
     getPreviousMessages(userID, clickedUserID)
-      .then((messageObj) => {
+      .then((previousMessages) => {
         this.setState({
-          messages: messageObj.messages,
-          doc: messageObj.doc,
+          messages: previousMessages,
         });
       })
       .catch((err) => {
@@ -30,11 +22,8 @@ class Chat extends Component {
   }
 
   onSend(messages = []) {
-    sendMessage(messages[0], this.state.doc).then((newMessage) => {
-      this.setState(previousState => ({
-        messages: GiftedChat.append(previousState.messages, [newMessage]),
-      }));
-    });
+    // send message to database
+    // (in setState) - messages: GiftedChat.append(previousState.messages, messages)
   }
 
   onReceive(text) {
@@ -46,7 +35,7 @@ class Chat extends Component {
       <GiftedChat
         messages={this.state.messages}
         onSend={messages => this.onSend(messages)}
-        user={{ _id: userID, name: userName }}
+        user={{ _id: userID }}
       />
     );
   }
