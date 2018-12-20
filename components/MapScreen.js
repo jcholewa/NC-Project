@@ -87,13 +87,10 @@ export default class MapScreen extends Component {
           });
           return Expo.Location.reverseGeocodeAsync(locationAndError.location);
         })
-        .then((city) => {
-          console.log('Loaded address information');
-          return this.setState({
-            userCity: city[0].city,
-            mapLoading: false,
-          });
-        })
+        .then(city => this.setState({
+          userCity: city[0].city,
+          mapLoading: false,
+        }))
         .catch(err => this.setState(
           {
             mapLoading: false,

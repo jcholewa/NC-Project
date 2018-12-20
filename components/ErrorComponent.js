@@ -72,7 +72,7 @@ class ErrorComponent extends Component {
             >
               Use the menu button to navigate to safety!
             </Text>
-            <Text
+            {/* <Text
               style={{
                 color: colorSettings.errorText,
                 margin: 8,
@@ -81,7 +81,7 @@ class ErrorComponent extends Component {
               }}
             >
               {`${error}`}
-            </Text>
+            </Text> */}
           </>
         </MenuWrapper>
       </View>

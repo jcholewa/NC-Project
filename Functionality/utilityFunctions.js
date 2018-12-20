@@ -42,7 +42,6 @@ const getUserLocation = async (user, cb) => {
         },
         errorMessage: null,
       };
-      console.log('Loaded current user location');
       return cb(null, newObj);
     });
 };
@@ -90,7 +89,6 @@ const filterUsersByDistance = async (user, cb) => {
     }
     return nearbyUsers;
   }, {});
-  console.log('Loaded nearby users');
   return cb(null, nearbyUsersObj);
 };
 
@@ -111,10 +109,7 @@ const getCurrentUserInfo = uid => firestore
   .collection('users')
   .doc(uid)
   .get()
-  .then((snapshot) => {
-    console.log('Loaded current user data.');
-    return snapshot.data();
-  });
+  .then(snapshot => snapshot.data());
 
 export {
   getUserLocation, getLoggedInUsers, filterUsersByDistance, logOut, getCurrentUserInfo,
