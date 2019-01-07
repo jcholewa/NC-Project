@@ -40,7 +40,7 @@ Additionally, to see the application in action its advised that you install the 
 ### Installation
 
 1. Fork and clone the repository from:
-   https://github.com/Lluran/NC-Project.git
+   https://github.com/jcholewa/NC-Project
 
 2. Install dependencies by running the command:
 
