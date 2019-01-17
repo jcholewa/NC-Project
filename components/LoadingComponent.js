@@ -1,11 +1,11 @@
-import React from 'react';
-import Spinner from 'react-native-loading-spinner-overlay';
-import { LinearGradient } from 'expo';
-import { View, Image } from 'react-native';
-import LoadingStyles from '../styles/Loading.styles';
-import { colorSettings } from '../styles/Colors.styles';
+import React from "react";
+import Spinner from "react-native-loading-spinner-overlay";
+import { LinearGradient } from "expo";
+import { View, Image } from "react-native";
+import LoadingStyles from "../styles/Loading.styles";
+import { colorSettings } from "../styles/Colors.styles";
 
-const logo = require('../assets/Connections.png');
+const logo = require("../assets/Connections.png");
 
 const { gradientColor1, gradientColor2 } = colorSettings;
 
@@ -15,16 +15,20 @@ const LoadingComponent = () => (
     <LinearGradient
       colors={gradientColor2}
       style={{
-        position: 'absolute',
+        position: "absolute",
         left: 0,
         right: 0,
         top: 0,
-        height: 300,
+        height: 300
       }}
     >
       <View style={LoadingStyles.container}>
         <Image style={LoadingStyles.logo} source={logo} />
-        <Spinner visible textContent="Loading..." textStyle={LoadingStyles.spinner} />
+        <Spinner
+          visible
+          textContent="Loading..."
+          textStyle={LoadingStyles.spinner}
+        />
       </View>
     </LinearGradient>
   </View>

@@ -1,79 +1,83 @@
-import React, { Component } from 'react';
-import { createSwitchNavigator, createStackNavigator, createAppContainer } from 'react-navigation';
-import 'firebase/firestore';
-import { Font, AppLoading } from 'expo';
-import AuthLoading from './components/AuthLoading';
-import Loading from './components/Loading';
-import SignUp from './components/SignUp';
-import Login from './components/LogIn';
-import ChatScreen from './components/ChatScreen';
-import MapScreen from './components/MapScreen';
-import InboxScreen from './components/InboxScreen';
-import ProfileScreen from './components/ProfileScreen';
-import ErrorComponent from './components/ErrorComponent';
-import NearbyEvents from './components/NearbyEvents';
-import EventInfo from './components/EventInfo';
-import CreateEvent from './components/CreateEvent';
+import React, { Component } from "react";
+import {
+  createSwitchNavigator,
+  createStackNavigator,
+  createAppContainer
+} from "react-navigation";
+import "firebase/firestore";
+import { Font, AppLoading } from "expo";
+import AuthLoading from "./components/AuthLoading";
+import Loading from "./components/Loading";
+import SignUp from "./components/SignUp";
+import Login from "./components/LogIn";
+import ChatScreen from "./components/ChatScreen";
+import MapScreen from "./components/MapScreen";
+import InboxScreen from "./components/InboxScreen";
+import ProfileScreen from "./components/ProfileScreen";
+import ErrorComponent from "./components/ErrorComponent";
+import NearbyEvents from "./components/NearbyEvents";
+import EventInfo from "./components/EventInfo";
+import CreateEvent from "./components/CreateEvent";
 
 console.disableYellowBox = true;
 
 const loginFlow = createSwitchNavigator(
   {
     Loading: {
-      screen: Loading,
+      screen: Loading
     },
     LogIn: {
-      screen: Login,
+      screen: Login
     },
     SignUp: {
-      screen: SignUp,
-    },
+      screen: SignUp
+    }
   },
   {
-    initialRouteName: 'Loading',
-  },
+    initialRouteName: "Loading"
+  }
 );
 
 const mainFlow = createStackNavigator(
   // Add main app components here - remember to include screen property
   {
     Map: {
-      screen: MapScreen,
+      screen: MapScreen
     },
     Chat: {
-      screen: ChatScreen,
+      screen: ChatScreen
     },
     Inbox: {
-      screen: InboxScreen,
+      screen: InboxScreen
     },
     Profile: {
-      screen: ProfileScreen,
+      screen: ProfileScreen
     },
     Error: {
-      screen: ErrorComponent,
+      screen: ErrorComponent
     },
     CreateEvent: {
-      screen: CreateEvent,
+      screen: CreateEvent
     },
     NearbyEvents: {
-      screen: NearbyEvents,
+      screen: NearbyEvents
     },
     EventInfo: {
-      screen: EventInfo,
-    },
+      screen: EventInfo
+    }
   },
   {
-    initialRouteName: 'Map',
-  },
+    initialRouteName: "Map"
+  }
 );
 
 const appNavigation = createSwitchNavigator(
   {
     AuthLoading,
     loginFlow,
-    mainFlow,
+    mainFlow
   },
-  { initialRouteName: 'AuthLoading' },
+  { initialRouteName: "AuthLoading" }
 );
 
 const AppContainer = createAppContainer(appNavigation);
@@ -83,14 +87,14 @@ const AppContainer = createAppContainer(appNavigation);
 
 function cacheFonts() {
   return Font.loadAsync({
-    'Thasadith-Regular': require('./assets/fonts/Thasadith/Thasadith-Regular.ttf'),
-    'Thasadith-Bold': require('./assets/fonts/Thasadith/Thasadith-Bold.ttf'),
+    "Thasadith-Regular": require("./assets/fonts/Thasadith/Thasadith-Regular.ttf"),
+    "Thasadith-Bold": require("./assets/fonts/Thasadith/Thasadith-Bold.ttf")
   });
 }
 
 export default class App extends Component {
   state = {
-    isReady: false,
+    isReady: false
   };
 
   async _loadAssetsAsync() {

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Text, View } from 'react-native';
-import { Button, Icon } from 'native-base';
-import { colorSettings } from '../styles/Colors.styles';
-import MenuWrapper from './MenuWrapper';
-import { titleStyles, iconStyles } from '../styles/Hamburger.styles';
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+import { Button, Icon } from "native-base";
+import { colorSettings } from "../styles/Colors.styles";
+import MenuWrapper from "./MenuWrapper";
+import { titleStyles, iconStyles } from "../styles/Hamburger.styles";
 
 class ErrorComponent extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -12,28 +12,29 @@ class ErrorComponent extends Component {
         iconLeft
         transparent
         onPress={() => {
-          navigation.getParam('buttonChange')();
+          navigation.getParam("buttonChange")();
         }}
         width={50}
       >
         <Icon type="FontAwesome" name="bars" style={iconStyles} />
       </Button>
     ),
-    title: 'Error',
-    ...titleStyles,
+    title: "Error",
+    ...titleStyles
   });
 
   state = {
-    button: false,
+    button: false
   };
 
   componentDidMount() {
+    console.log("mounted error component");
     const { navigation } = this.props;
     navigation.setParams({ buttonChange: this.buttonChange });
   }
 
   buttonChange = () => {
-    this.setState((state) => {
+    this.setState(state => {
       const buttonClick = !state.button;
       return { button: buttonClick };
     });
@@ -46,18 +47,22 @@ class ErrorComponent extends Component {
         style={{
           backgroundColor: colorSettings.errorBackground,
           flex: 1,
-          justifyContent: 'center',
-          paddingTop: 100,
+          justifyContent: "center",
+          paddingTop: 100
         }}
       >
-        <MenuWrapper navigation={navigation} currentPage="inbox" buttonState={this.state.button}>
+        <MenuWrapper
+          navigation={navigation}
+          currentPage="inbox"
+          buttonState={this.state.button}
+        >
           <>
             <Text
               style={{
                 color: colorSettings.errorText,
                 margin: 8,
-                alignSelf: 'center',
-                fontSize: 19,
+                alignSelf: "center",
+                fontSize: 19
               }}
             >
               Oooops, something went wrong.
@@ -66,22 +71,22 @@ class ErrorComponent extends Component {
               style={{
                 color: colorSettings.errorText,
                 margin: 8,
-                alignSelf: 'center',
-                fontSize: 19,
+                alignSelf: "center",
+                fontSize: 19
               }}
             >
               Use the menu button to navigate to safety!
             </Text>
-            {navigation.getParam('error') && (
+            {navigation.getParam("error") && (
               <Text
                 style={{
                   color: colorSettings.errorText,
                   margin: 8,
-                  alignSelf: 'center',
-                  fontSize: 10,
+                  alignSelf: "center",
+                  fontSize: 10
                 }}
               >
-                {`${navigation.getParam('error')}`}
+                {`${navigation.getParam("error")}`}
               </Text>
             )}
           </>
