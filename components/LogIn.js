@@ -7,7 +7,7 @@ import loginStyles from "../styles/Login.styles";
 import { generalStyling } from "../styles/generalStyling.styles";
 import signUpStyles from "../styles/SignUp.styles";
 
-const { firestore } = require("../config");
+const { firestore } = require("../config/config");
 
 class Login extends Component {
   state = {

@@ -1,35 +1,35 @@
-import * as firebase from 'firebase';
-import 'firebase/firestore';
+import * as firebase from "firebase";
+import "firebase/firestore";
 
-const { firestore } = require('../config');
+const { firestore } = require("../config/config");
 
-const chatsRef = firestore.collection('chats');
-const usersRef = firestore.collection('users');
+const chatsRef = firestore.collection("chats");
+const usersRef = firestore.collection("users");
 
 const getPreviousMessages = async (currentUser, clickedUser) => {
   const queryPreviousChatHistory = chatsRef.where(
-    'users',
-    'array-contains',
-    `${currentUser}${clickedUser}`,
+    "users",
+    "array-contains",
+    `${currentUser}${clickedUser}`
   );
-  return queryPreviousChatHistory.get().then((querySnapshot) => {
+  return queryPreviousChatHistory.get().then(querySnapshot => {
     if (querySnapshot.empty) {
       chatsRef.doc(`${currentUser}${clickedUser}`).set({
         users: [`${currentUser}${clickedUser}`, `${clickedUser}${currentUser}`],
         messages: [],
-        usersArr: [`${currentUser}`, `${clickedUser}`],
+        usersArr: [`${currentUser}`, `${clickedUser}`]
       });
       return { doc: `${currentUser}${clickedUser}`, messages: [] };
     }
     const previousMessages = [];
     let docID;
-    querySnapshot.forEach((doc) => {
+    querySnapshot.forEach(doc => {
       docID = doc.id;
       previousMessages.push(doc.data().messages);
     });
     return {
       doc: docID,
-      messages: previousMessages[0].splice(-20).reverse(),
+      messages: previousMessages[0].splice(-20).reverse()
     };
   });
 };
@@ -40,24 +40,25 @@ const sendMessage = async (message, doc) => {
   newMessage.createdAt = `${newMessage.createdAt}`;
   return chatRefDoc
     .update({
-      messages: firebase.firestore.FieldValue.arrayUnion(newMessage),
+      messages: firebase.firestore.FieldValue.arrayUnion(newMessage)
     })
     .then(() => newMessage);
 };
 
-const getChatPartnerNames = async otherUserID => usersRef
-  .doc(otherUserID)
-  .get()
-  .then((querySnapshot) => {
-    const chatPartnerInfo = {};
-    chatPartnerInfo.username = querySnapshot.data().username;
-    chatPartnerInfo.name = querySnapshot.data().name;
-    return chatPartnerInfo;
-  });
+const getChatPartnerNames = async otherUserID =>
+  usersRef
+    .doc(otherUserID)
+    .get()
+    .then(querySnapshot => {
+      const chatPartnerInfo = {};
+      chatPartnerInfo.username = querySnapshot.data().username;
+      chatPartnerInfo.name = querySnapshot.data().name;
+      return chatPartnerInfo;
+    });
 
 module.exports = {
   getPreviousMessages,
   sendMessage,
   chatsRef,
-  getChatPartnerNames,
+  getChatPartnerNames
 };

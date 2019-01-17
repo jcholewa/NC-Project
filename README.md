@@ -6,7 +6,7 @@
 
 Nomad Network is a mobile application for geolocation-based messaging. The app is designed for individuals who are looking for others in the nearby vicinity to share experiences with.
 
-A typical use scenario would involve a solo-traveller new to a city, opening up the app and messaging another solo-traveller in the same city and arranging to meet up the next day to explore the local museums together.
+A typical use scenario would involve a solo traveller new to a city, opening up the app and messaging another solo traveller in the same city, and arranging to meet up the next day to explore the local museums together.
 
 ### Collaborators
 
@@ -35,7 +35,7 @@ This application requires you to have set up a Google account to be able to sign
 
 3. Make a note of your project config codes by clicking on the web setup button on the Auth section of the console. You'll need this information to install the application.
 
-Additionally, to see the application in action its advised that you install the 'expo' application on your smartphone. This will allow you to scan a QR code after installation to see the app running on your phone. Alternatively you can set up iOS and android emulators and view the application running there. See https://docs.expo.io/versions/latest/ for more information.
+Additionally, to see the application in action its advised that you install the 'Expo' application on your smartphone. This will allow you to scan a QR code after installation to see the app running on your phone. Alternatively you can set up iOS and android emulators and view the application running there. See https://docs.expo.io/versions/latest/ for more information.
 
 ### Installation
 
@@ -81,7 +81,7 @@ $ npm start
 
 This will open up a browser window and allow you to either scan the QR code or open an emulator as outlined in the 'Prerequisites' section.
 
-5. The application is designed for use by multiple users, to truly experience the app you may want to get others to scan the QR code so that you can start messaging them, happy chatting!
+5. The application is designed for use by multiple users, so to truly experience the app you may want to get others to scan the QR code so that you can start messaging them. Happy chatting!
 
 ## Built With
 

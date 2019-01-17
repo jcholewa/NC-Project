@@ -15,7 +15,7 @@ import Textarea from "react-native-textarea";
 import signUpStyles from "../styles/SignUp.styles";
 import { generalStyling, generalFont } from "../styles/generalStyling.styles";
 
-const { firestore } = require("../config");
+const { firestore } = require("../config/config");
 
 class SignUp extends Component {
   state = {
